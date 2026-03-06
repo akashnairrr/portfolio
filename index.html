@@ -642,6 +642,11 @@
     /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
+    @media (pointer: coarse) {
+      * { cursor: auto !important; }
+      #cursor-dot, #cursor-ring { display: none; }
+    }
+
     @media (max-width: 720px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
@@ -960,8 +965,8 @@
     });
 
     (function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
+      ringX += (mouseX - ringX) * 0.2;
+      ringY += (mouseY - ringY) * 0.2;
       ring.style.left = ringX + 'px';
       ring.style.top  = ringY + 'px';
       requestAnimationFrame(animateRing);
