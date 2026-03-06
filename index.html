@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akash Nair — Fullstack Engineer</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
@@ -129,8 +130,10 @@
       transform-origin: left;
       transition: transform 0.25s ease;
     }
-    .nav-links a:hover { color: var(--palladian); }
-    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--palladian); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
 
     /* Hamburger — hidden on desktop */
     .nav-hamburger {
@@ -708,7 +711,7 @@
     <p class="main-sub">I build thoughtful software — from elegant APIs to the interfaces people use every day.</p>
     <div class="main-cta">
       <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="resume.pdf" class="btn btn-outline" download target="_blank">Download CV ↓</a>
+      <a href="Akash-Nair-Fullstack-Engineer-Resume.pdf" class="btn btn-outline" download target="_blank">Download CV ↓</a>
     </div>
     <!-- <div class="hero-stats">
       <div>
@@ -920,7 +923,7 @@
       <a href="https://linkedin.com/in/akashnairrr" class="contact-link" target="_blank">in LinkedIn</a>
     </div>
 
-    <a href="resume.pdf" class="btn btn-primary" download style="margin:0 auto;display:inline-flex;">Download Résumé ↓</a>
+    <a href="Akash-Nair-Fullstack-Engineer-Resume.pdf" class="btn btn-primary" download style="margin:0 auto;display:inline-flex;">Download Résumé ↓</a>
   </section>
 
   <!-- FOOTER -->
@@ -994,6 +997,19 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+
+    /* ── ACTIVE NAV ── */
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+        }
+      });
+    }, { rootMargin: '0px 0px -65% 0px', threshold: 0 });
+
+    document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+</script>
 </body>
 </html>
